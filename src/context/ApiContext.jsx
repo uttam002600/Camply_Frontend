@@ -3,6 +3,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../utils/axios";
+import { useLocation } from "react-router-dom";
 
 const ApiContext = createContext();
 
@@ -17,6 +18,29 @@ export const ApiProvider = ({ children }) => {
   const [customers, setCustomers] = useState([]);
   const [loadingCustomers, setLoadingCustomers] = useState(false);
   const [customerError, setCustomerError] = useState(null);
+
+  const location = useLocation();
+
+  const verifyAuth = async () => {
+    try {
+      setLoading(true);
+      const response = await axiosInstance.get("/auth/verify", {
+        withCredentials: true,
+      });
+      setAuthUser(response.data.user);
+      setIsAuthenticated(true);
+    } catch (error) {
+      setAuthUser(null);
+      setIsAuthenticated(false);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Call verifyAuth on every route change
+  useEffect(() => {
+    verifyAuth();
+  }, [location.pathname]);
 
   const fetchCustomers = async () => {
     try {
@@ -38,28 +62,6 @@ export const ApiProvider = ({ children }) => {
   // Load initial customers
   useEffect(() => {
     fetchCustomers();
-  }, []);
-
-  // Check auth state on initial load
-  useEffect(() => {
-    const verifyAuth = async () => {
-      try {
-        setLoading(true);
-        const response = await axiosInstance.get("/auth/verify", {
-          withCredentials: true,
-        });
-
-        setAuthUser(response.data.user);
-        setIsAuthenticated(true);
-      } catch (error) {
-        setIsAuthenticated(false);
-        setAuthUser(null);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    verifyAuth();
   }, []);
 
   // Theme management

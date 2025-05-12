@@ -7,7 +7,7 @@ const axiosInstance = axios.create({
     "Content-Type": "application/json",
   },
 });
-// https://camply-backend.onrender.com
+// https://camply-backend.onrender.com/api
 // http://localhost:8002/api
 
 // Add response interceptor
