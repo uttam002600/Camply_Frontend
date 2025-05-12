@@ -107,6 +107,42 @@ export const ApiProvider = ({ children }) => {
     }
   };
 
+  const CustomValueEditor = ({
+    fieldData,
+    operator,
+    value,
+    handleOnChange,
+    title,
+  }) => {
+    const isNumericField = [
+      "total_spent",
+      "order_count",
+      "last_purchase",
+    ].includes(fieldData.name);
+    const inputType = isNumericField ? "number" : "text";
+
+    const handleValueChange = (e) => {
+      const newValue = isNumericField
+        ? e.target.value === ""
+          ? ""
+          : Number(e.target.value)
+        : e.target.value;
+      handleOnChange(newValue);
+    };
+
+    return (
+      <input
+        type={inputType}
+        value={value}
+        onChange={handleValueChange}
+        className="border border-gray-300 px-2 py-1 rounded w-full"
+        placeholder={title}
+        min={isNumericField ? "0" : undefined}
+        step={isNumericField ? "any" : undefined}
+      />
+    );
+  };
+
   return (
     <ApiContext.Provider
       value={{
@@ -119,6 +155,7 @@ export const ApiProvider = ({ children }) => {
         theme,
         toggleTheme,
         refreshToken,
+        CustomValueEditor,
       }}
     >
       {children}

@@ -76,7 +76,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <a
-                  href="#"
+                  href="/asset/guide.pdf"
                   className="text-[var(--text-black-700)] hover:text-[var(--skin-color)] text-sm"
                 >
                   Documentation

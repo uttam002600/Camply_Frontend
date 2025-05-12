@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Toaster } from "react-hot-toast";
 import { ApiProvider, useApi } from "./context/ApiContext";
 import Login from "./pages/Login";
-import { Dashboard } from "./pages/Dashboard";
+import Dashboard from "./pages/Dashboard";
 import Campaigns from "./pages/Campaigns";
 import Customers from "./pages/Customers";
 import Footer from "./component/common/Footer";
@@ -42,7 +42,7 @@ function App() {
         <ApiProvider>
           <Routes>
             {/* Public routes */}
-            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Login />} />
 
             {/* Protected routes with layout */}
             <Route element={<MainLayout />}>
@@ -81,7 +81,7 @@ function App() {
             </Route>
 
             {/* Fallback route */}
-            <Route path="*" element={<Navigate to="/login" replace />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </ApiProvider>
       </BrowserRouter>

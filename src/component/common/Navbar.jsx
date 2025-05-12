@@ -101,15 +101,12 @@ const Navbar = () => {
                   </div>
                   <button
                     onClick={logout}
-                    className="block w-full text-left px-4 py-2 text-sm font-medium text-[var(--text-black-700)] hover:bg-[var(--bg-black-50)]"
+                    className="block w-full text-left px-4 py-2 text-sm font-medium text-[var(--skin-color)] hover:bg-[var(--bg-black-50)]"
                   >
-                    <span className="mr-2">🚪</span> Logout
+                    <span className="mr-2 ">🚪</span> Logout
                   </button>
                   <button className="block w-full text-left px-4 py-2 text-sm font-medium text-[var(--text-black-700)] hover:bg-[var(--bg-black-50)]">
-                    Dummy Button 1
-                  </button>
-                  <button className="block w-full text-left px-4 py-2 text-sm font-medium text-[var(--text-black-700)] hover:bg-[var(--bg-black-50)]">
-                    Dummy Button 2
+                    Button
                   </button>
                 </div>
               </div>
