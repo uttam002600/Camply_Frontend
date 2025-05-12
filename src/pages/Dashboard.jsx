@@ -101,7 +101,7 @@ const Dashboard = () => {
   };
 
   if (loading) {
-    return <LoadingSpinner />;
+    return <LoadingSpinner label="Loading Dashboard..." />;
   }
 
   return (

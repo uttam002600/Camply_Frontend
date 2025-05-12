@@ -2,15 +2,18 @@ import { Link, useLocation } from "react-router-dom";
 import { useApi } from "../../context/ApiContext";
 import React, { useState } from "react";
 import ThemeToggle from "./ThemeToggle";
+import { FiBarChart2 } from "react-icons/fi";
+import AiInsightModal from "../Campaign/AIInsight";
 
 const Navbar = () => {
   const { authUser, logout } = useApi();
   const location = useLocation();
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showInsights, setShowInsights] = useState(false);
 
   const navItems = [
     { path: "/dashboard", icon: "📊", label: "Dashboard" },
-    { path: "/campaigns", icon: "📢", label: "Campaigns" },
+    { path: "/campaigns", icon: "📢", label: "Campaign" },
     { path: "/customers", icon: "👥", label: "Customers" },
   ];
 
@@ -66,10 +69,17 @@ const Navbar = () => {
           {/* Right Side */}
           <div className="hidden md:flex items-center space-x-4">
             {/* AI Assistant Button */}
-            <button className="p-2 rounded-full bg-[var(--skin-color)] text-white hover:bg-opacity-90">
-              <span className="sr-only">AI Assistant</span>
-              <span className="text-lg">🤖</span>
+            <button
+              onClick={() => setShowInsights(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
+            >
+              <FiBarChart2 />
+              AI Insights
             </button>
+
+            {showInsights && (
+              <AiInsightModal onClose={() => setShowInsights(false)} />
+            )}
 
             {/* Theme Toggle */}
             <ThemeToggle />

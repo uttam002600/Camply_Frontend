@@ -6,6 +6,9 @@ import { toast } from "react-hot-toast";
 import ReactQueryBuilder from "react-querybuilder";
 import "react-querybuilder/dist/query-builder.css";
 import { useNavigate } from "react-router-dom";
+// genini ai integration
+
+import { BsStars as FiSparkles } from "react-icons/bs";
 
 const CampaignCreatePage = () => {
   const { authUser, CustomValueEditor } = useApi();
@@ -15,6 +18,7 @@ const CampaignCreatePage = () => {
     handleSubmit,
     formState: { errors },
     control,
+    setValue,
   } = useForm();
   const [segmentQuery, setSegmentQuery] = useState({
     combinator: "and",
@@ -23,6 +27,38 @@ const CampaignCreatePage = () => {
   const [estimatedCount, setEstimatedCount] = useState(0);
   const [isEstimating, setIsEstimating] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Gemini Ai
+  const [isGenerating, setIsGenerating] = useState(false);
+
+  const handleGenerateContent = async () => {
+    try {
+      setIsGenerating(true);
+      const { data } = await axiosInstance.post(
+        "/ai/generate-campaign-content",
+        {
+          segmentRules: segmentQuery,
+        }
+      );
+
+      // Split into subject and body (assuming response is separated by \n\n)
+      const [subject, ...bodyParts] = data.data.split("\n\n");
+      const body = bodyParts.join("\n\n");
+
+      // Update form fields using setValue
+      setValue("subject", subject.replace("Subject:", "").trim());
+      setValue("message", body);
+
+      toast.success("AI-generated content created!");
+    } catch (error) {
+      toast.error(
+        error.response?.data?.message || "Failed to generate content"
+      );
+      console.error("Content Generation Error:", error);
+    } finally {
+      setIsGenerating(false);
+    }
+  };
 
   const estimateAudience = async () => {
     try {
@@ -231,13 +267,21 @@ const CampaignCreatePage = () => {
               )}
             </div>
 
-            <div>
+            <div className="relative">
               <label className="block text-sm font-medium text-[var(--text-black-700)] mb-1">
                 Message Body *
                 <span className="text-xs text-[var(--text-black-700)] ml-2">
                   Use variables like {"{name}"}, {"{total_spent}"}
                 </span>
               </label>
+              <button
+                onClick={handleGenerateContent}
+                disabled={isGenerating || segmentQuery.rules.length === 0}
+                className="absolute right-0 top-0 flex items-center gap-1 px-3 py-1 text-sm bg-[var(--skin-color)] text-white rounded hover:opacity-90 disabled:opacity-50"
+              >
+                <FiSparkles size={14} />
+                {isGenerating ? "Generating..." : "AI Generate"}
+              </button>
               <textarea
                 {...register("message", {
                   required: "Message is required",

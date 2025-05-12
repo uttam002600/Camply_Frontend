@@ -14,6 +14,32 @@ export const ApiProvider = ({ children }) => {
   const [loading, setLoading] = useState(true); // Initial loading state
   const navigate = useNavigate();
 
+  const [customers, setCustomers] = useState([]);
+  const [loadingCustomers, setLoadingCustomers] = useState(false);
+  const [customerError, setCustomerError] = useState(null);
+
+  const fetchCustomers = async () => {
+    try {
+      setLoadingCustomers(true);
+      const response = await axiosInstance.get("/customer/get");
+      setCustomers(response.data.data);
+      console.log("the data of customer is", response);
+      return response.data.data;
+    } catch (error) {
+      setCustomerError(
+        error.response?.data?.message || "Failed to fetch customers"
+      );
+      throw error;
+    } finally {
+      setLoadingCustomers(false);
+    }
+  };
+
+  // Load initial customers
+  useEffect(() => {
+    fetchCustomers();
+  }, []);
+
   // Check auth state on initial load
   useEffect(() => {
     const verifyAuth = async () => {
@@ -156,6 +182,10 @@ export const ApiProvider = ({ children }) => {
         toggleTheme,
         refreshToken,
         CustomValueEditor,
+        customers,
+        loadingCustomers,
+        customerError,
+        fetchCustomers,
       }}
     >
       {children}

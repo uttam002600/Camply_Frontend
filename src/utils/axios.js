@@ -1,12 +1,14 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:8002/api",
+  baseURL: "https://camply-backend.onrender.com/api",
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
   },
 });
+// https://camply-backend.onrender.com
+// http://localhost:8002/api
 
 // Add response interceptor
 axiosInstance.interceptors.response.use(
