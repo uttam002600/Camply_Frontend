@@ -28,10 +28,8 @@ Mongoose (ODM)
 
 JWT (Authentication)
 
-Redis (Pub/Sub for async processing) (Brownie Point Implemented!)
-
 AI Integration
-OpenAI API (AI-generated message suggestions & rule automation)
+OpenAI API (AI-generated message suggestions & Smart AI Insight)
 
 Future AI Features:
 
@@ -68,9 +66,14 @@ Backend Directory
 🎯 Key Features
 
 1. Data Ingestion APIs ✅
+   ![Ingestion](postman_api_camply.png)
    Secure REST APIs for customer & order data ingestion.
 
-Postman/Swagger documented for easy integration.
+GUIDE PDF
+You can find the complete Postman API testing guide here:  
+[📥 Download Camply_API_Guide.pdf](/asset/Camply_API_Guide.pdf)
+
+Postman documented for easy integration.
 
 Pub/Sub Architecture (Redis Streams) for async processing (Brownie Point!).
 
@@ -94,15 +97,9 @@ Real-time Logging in communication_log.
 JWT-based sessions for protected routes.
 
 5. AI Integration ✅
-   AI-Generated Messages (GPT-3.5 for personalized content).
+   AI-Generated Messages (Cohere-AI for personalized content), Performance Summarization (AI insights).
 
 Smart Suggestions (Best-performing message variants).
-
-Future AI Features:
-
-Auto-Segment Builder (NLP → Rules).
-
-Performance Summarization (AI insights).
 
 🚀 Deployment
 Frontend: Netlify (https://camply.netlify.app)
@@ -148,7 +145,7 @@ npm run dev
 📜 Postman API Docs
 Run in Postman
 
-📸 Screenshots (Add real screenshots later)
+📸[Dashboard](Camply_dashboard.png)
 Dashboard Campaign Creation AI Suggestions
 Dashboard Campaign AI
 🤝 Contributing
@@ -160,7 +157,7 @@ CRM © 2023 Uttam Upadhyay
 ✨ Why CAMPLY?
 Smarter Campaigns with AI.
 
-Scalable Architecture (MERN + Redis).
+Scalable Architecture (MERN + Generative AI).
 
 Enterprise-Ready with OAuth & RBAC.
 

@@ -47,7 +47,7 @@ export const ApiProvider = ({ children }) => {
       setLoadingCustomers(true);
       const response = await axiosInstance.get("/customer/get");
       setCustomers(response.data.data);
-      console.log("the data of customer is", response);
+
       return response.data.data;
     } catch (error) {
       setCustomerError(
@@ -128,7 +128,7 @@ export const ApiProvider = ({ children }) => {
       setAuthUser(null);
       setIsAuthenticated(false);
       toast.success("Logged out successfully");
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       toast.error("Logout failed. Please try again.");
       console.error("Logout Error:", error);

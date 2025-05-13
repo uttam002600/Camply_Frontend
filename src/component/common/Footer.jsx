@@ -84,10 +84,10 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/asset/Camply_API_Guide.pdf"
                   className="text-[var(--text-black-700)] hover:text-[var(--skin-color)] text-sm"
                 >
-                  API Reference
+                  API Ingestion
                 </a>
               </li>
               <li>
@@ -108,13 +108,13 @@ const Footer = () => {
             </h3>
             <div className="space-y-4">
               <Link
-                to="/campaigns/new"
+                to="/campaigns"
                 className="inline-block w-full md:w-auto px-4 py-2 bg-[var(--skin-color)] text-white rounded-md text-center hover:opacity-90 transition"
               >
                 Create Campaign
               </Link>
               <a
-                href="mailto:support@camply.com"
+                href="mailto:uttam00260@gmail.com"
                 className="inline-block w-full md:w-auto px-4 py-2 border border-[var(--skin-color)] text-[var(--skin-color)] rounded-md text-center hover:bg-[var(--bg-black-50)] transition"
               >
                 Contact Support
