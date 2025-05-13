@@ -71,7 +71,7 @@ Backend Directory
 
 GUIDE PDF
 You can find the complete Postman API testing guide here:  
-[📥 Download Camply_API_Guide.pdf](/asset/Camply_API_Guide.pdf)
+[📥 Download Camply_API_Guide.pdf](Camply_API_Guide.pdf)
 
 Postman documented for easy integration.
 
@@ -119,13 +119,12 @@ Advanced Customer Behavior Tracking 🕵️‍♂️
 Clone the repo
 
 bash
-git clone https://github.com/your-repo/camply.git
+git clone https://github.com/uttam002600/Camply_Frontend
 Install dependencies
 
 bash
 cd frontend && npm install
-cd ../backend && npm install
-Set up environment variables
+npm run dev
 
 .env in backend (MongoDB, JWT, OpenAI keys)
 
@@ -145,7 +144,7 @@ npm run dev
 📜 Postman API Docs
 Run in Postman
 
-📸[Dashboard](Camply_dashboard.png)
+📸 ![dashboard](Camply_dashboard.png)
 Dashboard Campaign Creation AI Suggestions
 Dashboard Campaign AI
 🤝 Contributing
