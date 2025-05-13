@@ -50,7 +50,9 @@ const Login = () => {
               <h1 className="text-3xl font-bold text-gray-800 mb-2">
                 Welcome Back
               </h1>
-              <p className=" text-[var(--skin-color)]">Sign in with google </p>
+              <p className=" text-[var(--skin-color)] font-semibold">
+                Please try again in case of signup failure after 50sec{" "}
+              </p>
             </div>
 
             <div className="mb-6">
